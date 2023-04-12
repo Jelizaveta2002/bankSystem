@@ -14,4 +14,9 @@
             <column name="country" type="text"/>
         </createTable>
     </changeSet>
+    <changeSet id="column name" author="Liza">
+        <addColumn tableName="customers">
+            <column name="name" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
