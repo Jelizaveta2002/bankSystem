@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: springbootdb
+      POSTGRES_USER: springbootuser
+      POSTGRES_PASSWORD: springbootpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresdata:/var/lib/postgresql/data
+
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmqdata:/var/lib/rabbitmq
+
+  springbootapp:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+      - rabbitmq
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/springbootdb
+      SPRING_DATASOURCE_USERNAME: springbootuser
+      SPRING_DATASOURCE_PASSWORD: springbootpass
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_VIRTUAL_HOST: /
+    volumes:
+      - /tmp:/tmp
+      - .:/app
+      - logs:/app/logs
+
+volumes:
+  postgresdata:
+  rabbitmqdata:
+  logs:
