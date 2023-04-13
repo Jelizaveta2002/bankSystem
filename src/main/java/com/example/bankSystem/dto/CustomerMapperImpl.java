@@ -1,19 +1,18 @@
 package com.example.bankSystem.dto;
 
 import com.example.bankSystem.entity.Customer;
-import com.example.bankSystem.util.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
+import com.example.bankSystem.util.MapperDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CustomerMapperImpl implements Mapper {
+public class CustomerMapperImpl implements MapperDTO {
     @Override
     public CustomerDTO toDto(Customer customer) {
         CustomerDTO dto = new CustomerDTO();
         dto.setId(customer.getId());
         dto.setName(customer.getName());
         dto.setCountry(customer.getCountry());
-        dto.setCurrencies(customer.getCurrencies());
+        dto.setCurrencies(customer.getCurrency());
         return dto;
     }
 
@@ -23,7 +22,7 @@ public class CustomerMapperImpl implements Mapper {
         customer.setId(customerDTO.getId());
         customer.setName(customerDTO.getName());
         customer.setCountry(customerDTO.getCountry());
-        customer.setCurrencies(customerDTO.getCurrencies());
+        customer.setCurrency(customerDTO.getCurrencies());
         return customer;
     }
 }

@@ -12,20 +12,20 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private Integer id;
     private String name;
 
     private String country;
 
     @ElementCollection
-    private List<Currencies> currencies;
+    private List<Currencies> currency;
 
-    public List<Currencies> getCurrencies() {
-        return currencies;
+    public List<Currencies> getCurrency() {
+        return currency;
     }
 
-    public void setCurrencies(List<Currencies> currencies) {
-        this.currencies = currencies;
+    public void setCurrency(List<Currencies> currency) {
+        this.currency = currency;
     }
 
     public String getCountry() {
@@ -44,11 +44,11 @@ public class Customer {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 }

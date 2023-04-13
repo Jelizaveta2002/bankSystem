@@ -20,4 +20,5 @@ public class CustomerController {
     public ResponseEntity<String> addCustomer(@RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.ok(String.valueOf(customerService.insert(customerDTO)));
     }
+
 }

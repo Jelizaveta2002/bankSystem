@@ -19,4 +19,32 @@
             <column name="name" type="text"/>
         </addColumn>
     </changeSet>
+    <changeSet  author="Liza"  id="add table currencies">
+        <createTable tableName="currencies">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customerId" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="currency" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="Liza" id="rename_column">
+        <renameColumn tableName="currencies" oldColumnName="customerId" newColumnName="customer_id" columnDataType="int"/>
+    </changeSet>
+
+    <changeSet author="Liza" id="drop_column">
+        <dropColumn tableName="currencies" columnName="customer_id"/>
+    </changeSet>
+
+    <changeSet id="creatorId" author="Liza">
+        <addColumn tableName="currencies">
+            <column name="customer_id" type="int">
+                <constraints foreignKeyName="customerId" references="customers(id)"/>
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

@@ -1,7 +1,6 @@
 package com.example.bankSystem.dto;
 
 import com.example.bankSystem.entity.Currencies;
-import jakarta.persistence.ElementCollection;
 
 import java.util.List;
 
@@ -9,13 +8,13 @@ public class CustomerDTO {
     private String name;
     private String country;
     private List<Currencies> currencies;
-    private Long id;
+    private Integer id;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
