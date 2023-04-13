@@ -47,4 +47,42 @@
             </column>
         </addColumn>
     </changeSet>
+
+    <changeSet  author="Liza"  id="new table">
+        <createTable tableName="accounts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customer_id" type="int">
+            </column>
+        </createTable>
+
+        <createTable tableName="balances">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="account_id" type="int">
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Liza" id="newKeys">
+        <!-- Add foreign key constraint to link customers to accounts -->
+        <addForeignKeyConstraint baseTableName="accounts"
+                                 baseColumnNames="customer_id"
+                                 constraintName="fk_customer_account"
+                                 referencedTableName="customers"
+                                 referencedColumnNames="id"/>
+        <!-- Add foreign key constraint to link accounts to balances -->
+        <addForeignKeyConstraint baseTableName="balances"
+                                 baseColumnNames="account_id"
+                                 constraintName="fk_account_balance"
+                                 referencedTableName="accounts"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <changeSet id="balances" author="Liza">
+        <addColumn tableName="balances">
+            <column name="currency" type="text"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
