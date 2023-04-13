@@ -28,7 +28,7 @@ services:
       - postgres
       - rabbitmq
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/springbootdb
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
       SPRING_DATASOURCE_USERNAME: springbootuser
       SPRING_DATASOURCE_PASSWORD: springbootpass
       SPRING_RABBITMQ_HOST: rabbitmq
