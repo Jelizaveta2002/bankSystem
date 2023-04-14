@@ -13,4 +13,7 @@ public interface CustomerMapper {
 
     @Insert("INSERT INTO currencies (customer_id, currency) VALUES (#{customer_id}, #{currency})")
     void insertCurrency(@Param("customer_id") Integer customer_id, @Param("currency") Currencies currency);
+
+    @Select("SELECT * FROM customers WHERE id = #{id}")
+    Customer getUserById(Integer id);
 }

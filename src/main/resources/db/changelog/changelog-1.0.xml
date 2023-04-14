@@ -85,4 +85,14 @@
             <column name="currency" type="text"/>
         </addColumn>
     </changeSet>
+    <changeSet author="liza" id="add_unique_constraint">
+        <addUniqueConstraint columnNames="customer_id"
+                             constraintName="UK_accounts_customer_id"
+                             tableName="accounts"/>
+    </changeSet>
+    <changeSet author="Liza" id="add-column-amount-to-balances-table">
+        <addColumn tableName="balances">
+            <column name="amount" type="numeric" defaultValueNumeric="0"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

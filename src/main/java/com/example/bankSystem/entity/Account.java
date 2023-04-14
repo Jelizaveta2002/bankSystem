@@ -13,7 +13,7 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    private Integer customerId;
+    private Integer customer_id;
 
     @OneToMany
     private List<Balance> listOfBalances;
@@ -26,12 +26,12 @@ public class Account {
         this.id = id;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Integer getCustomer_id() {
+        return customer_id;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer_id(Integer customerId) {
+        this.customer_id = customerId;
     }
 
     public List<Balance> getListOfBalances() {

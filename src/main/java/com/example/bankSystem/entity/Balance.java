@@ -12,9 +12,19 @@ public class Balance {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    private BigDecimal availableAmount;
+    private BigDecimal amount;
 
     private Currencies currency;
+
+    private Integer account_id;
+    public Integer getAccount_id() {
+        return account_id;
+    }
+
+    public void setAccount_id(Integer account_id) {
+        this.account_id = account_id;
+    }
+
 
     public Integer getId() {
         return id;
@@ -24,12 +34,12 @@ public class Balance {
         this.id = id;
     }
 
-    public BigDecimal getAvailableAmount() {
-        return availableAmount;
+    public BigDecimal getAmount() {
+        return amount;
     }
 
-    public void setAvailableAmount(BigDecimal availableAmount) {
-        this.availableAmount = availableAmount;
+    public void setAmount(BigDecimal availableAmount) {
+        this.amount = availableAmount;
     }
 
     public Currencies getCurrency() {
