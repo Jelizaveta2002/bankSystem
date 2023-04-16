@@ -30,7 +30,7 @@ public class AccountService {
 
     public Account findAccountById(Integer accountId) {
         Account account = accountMapper.getAccountById(accountId);
-        account.setListOfBalances(balanceMapper.getBalancesById(accountId));
+        account.setListOfBalances(balanceMapper.getBalancesByAccountId(accountId));
         return account;
     }
 }

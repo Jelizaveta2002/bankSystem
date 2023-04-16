@@ -12,10 +12,13 @@ public class Balance {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "amount")
     private BigDecimal amount;
 
+    @Column(name = "currency")
     private Currencies currency;
 
+    @Column(name = "account_id")
     private Integer account_id;
     public Integer getAccount_id() {
         return account_id;

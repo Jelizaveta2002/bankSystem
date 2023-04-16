@@ -95,4 +95,52 @@
             <column name="amount" type="numeric" defaultValueNumeric="0"/>
         </addColumn>
     </changeSet>
+
+    <changeSet  author="Liza"  id="new table 22">
+        <createTable tableName="transactions">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Liza" id="add-column">
+        <addColumn tableName="transactions">
+            <column name="account_id" type="int"/>
+        </addColumn>
+        <addColumn tableName="transactions">
+            <column name="description" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="transactions">
+            <column name="amount" type="numeric">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="transactions">
+            <column name="currency" type="text"/>
+            <column name="balance_id" type="int"/>
+            <column name="direction" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet author="Liza" id="newKeys22">
+        <!-- Add foreign key constraint to link accounts to transactions -->
+        <addForeignKeyConstraint baseTableName="transactions"
+                                 baseColumnNames="account_id"
+                                 constraintName="fk_trans_account"
+                                 referencedTableName="accounts"
+                                 referencedColumnNames="id"/>
+        <!-- Add foreign key constraint to link balances to transactions -->
+        <addForeignKeyConstraint baseTableName="transactions"
+                                 baseColumnNames="balance_id"
+                                 constraintName="fk_trans_balance"
+                                 referencedTableName="balances"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+
 </databaseChangeLog>

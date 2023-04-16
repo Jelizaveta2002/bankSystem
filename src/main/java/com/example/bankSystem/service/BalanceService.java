@@ -34,7 +34,8 @@ public class BalanceService {
             Account account = accountMapper.getAccountById(account_id);
             Customer customer = customerMapper.getUserById(account.getCustomer_id());
             List<Currencies> currencies =  currencyMapper.getCurrenciesById(customer.getId());
-            if (currencies.contains(currency)) {
+            List<Balance> balances = balanceMapper.getBalancesByAccIdAndCurrency(account_id, currency); //Account can not create 2 balances with the same currency
+            if (currencies.contains(currency) && balances.isEmpty()) {
                 Balance balance = new Balance();
                 balance.setAccount_id(account_id);
                 balance.setCurrency(currency);

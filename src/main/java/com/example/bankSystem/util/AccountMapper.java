@@ -15,5 +15,6 @@ public interface AccountMapper {
 
     @Select("SELECT * FROM accounts WHERE id = #{id}")
     Account getAccountById(Integer id);
+
 }
 
