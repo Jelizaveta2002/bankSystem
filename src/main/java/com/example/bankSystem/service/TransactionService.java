@@ -4,6 +4,7 @@ import com.example.bankSystem.entity.Balance;
 import com.example.bankSystem.entity.Currencies;
 import com.example.bankSystem.entity.Direction;
 import com.example.bankSystem.entity.Transaction;
+import com.example.bankSystem.util.AccountMapper;
 import com.example.bankSystem.util.BalanceMapper;
 import com.example.bankSystem.util.TransactionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +21,28 @@ public class TransactionService {
     private BalanceMapper balanceMapper;
     @Autowired
     private TransactionMapper transactionMapper;
+    @Autowired
+    private AccountMapper accountMapper;
 
     public Transaction createTransaction (Integer account_id, BigDecimal amount, Currencies currencies, Direction direction, String description) throws IllegalAccessException {
-
+        if (accountMapper.getAccountById(account_id) == null) {
+            throw new IllegalAccessException("Account missing!");
+        }
+        int diff = amount.compareTo(BigDecimal.ZERO);
+        if (diff < 0) {
+            throw new IllegalAccessException("Invalid amount !");
+        }
         Transaction transaction = new Transaction();
         List<Balance> balances = balanceMapper.getBalancesByAccIdAndCurrency(account_id, currencies);
         if (!balances.isEmpty()) {
             Balance balance = balances.get(0);
             if (direction == Direction.OUT) {
-                balance.setAmount(balance.getAmount().subtract(amount));
+                int difference = balance.getAmount().compareTo(amount);
+                if (difference > 0) {
+                    balance.setAmount(balance.getAmount().subtract(amount));
+                } else {
+                    throw new IllegalAccessException("You do not have enough money for this transaction !");
+                }
             }
             else if (direction == Direction.IN) {
                 balance.setAmount(balance.getAmount().add(amount));
@@ -44,6 +58,6 @@ public class TransactionService {
             transactionMapper.insert(transaction);
             return transaction;
         }
-        throw new IllegalAccessException("Transaction can not be created !");
+        throw new IllegalAccessException("Invalid currency");
     }
 }
