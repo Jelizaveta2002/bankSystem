@@ -13,9 +13,13 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private Integer id;
+
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "country")
     private String country;
+
 
     @ElementCollection
     private List<Currencies> currency;

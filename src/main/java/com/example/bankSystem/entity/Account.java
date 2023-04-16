@@ -13,6 +13,7 @@ public class Account {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "customer_id")
     private Integer customer_id;
 
     @OneToMany

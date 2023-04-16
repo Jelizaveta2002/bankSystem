@@ -32,6 +32,6 @@ public class TransactionController {
         ObjectMapper mapper = new ObjectMapper();
         String message = mapper.writeValueAsString(transaction);
         rabbitTemplate.convertAndSend(RabbitConfig.TOPIC_EXCHANGE_NAME, RabbitConfig.ROUTING_KEY, message);
-        return ResponseEntity.ok(transactionService.createTransaction(account_id, amount, currencies, direction, description));
+        return ResponseEntity.ok(transaction);
     }
 }
