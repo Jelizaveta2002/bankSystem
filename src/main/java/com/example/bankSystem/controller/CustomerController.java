@@ -1,6 +1,7 @@
 package com.example.bankSystem.controller;
 
 import com.example.bankSystem.dto.CustomerDTO;
+import com.example.bankSystem.entity.Account;
 import com.example.bankSystem.entity.Currencies;
 import com.example.bankSystem.service.AccountService;
 import com.example.bankSystem.service.BalanceService;
@@ -37,6 +38,11 @@ public class CustomerController {
     @GetMapping(value = "addBalance")
     public ResponseEntity<String> addBalance(Integer account_id, Currencies currency, BigDecimal amount) {
         return ResponseEntity.ok(String.valueOf(balanceService.addBalance(account_id, currency, amount)));
+    }
+
+    @GetMapping(value = "getAccount")
+    public ResponseEntity<Account> getAccount(Integer account_id) {
+        return ResponseEntity.ok(accountService.findAccountById(account_id));
     }
 
 }
