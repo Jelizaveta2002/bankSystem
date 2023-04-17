@@ -3,6 +3,9 @@
 In order to run application it is needed to run docker-compose.yml file and then
 run Dockerfile (it is possible to run by typing command "docker compose up") in
 terminal. Note that nothing should be run on ports 8080, 5432, 15672, 5672.
+Add postgres database with url: jdbc:postgresql://postgres:5432/postgres
+user: springbootuser, password:springbootpass.
+Run BankSystemApplication.
 
 ## Database
 
