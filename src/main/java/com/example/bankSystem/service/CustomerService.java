@@ -18,7 +18,7 @@ public class CustomerService {
     @Autowired
     private CustomerMapperImpl mapper;
 
-    public Object insert(CustomerDTO customerDTO) {
+    public Customer insert(CustomerDTO customerDTO) {
         Customer customer = mapper.toCustomer(customerDTO);
         customerMapper.insert(customer);
         Integer id = customer.getId();

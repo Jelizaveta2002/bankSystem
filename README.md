@@ -45,6 +45,86 @@ For my project I used some materials from one of my university projects: https:/
 I also used some tips from https://stackoverflow.com/ and https://chat.openai.com/chat
 mostly for working with MyBatis and RabbitMQ that I have not used before.
 
+## How it works
+We can use Postman for example.
+Create POST request: http://localhost:8080/api/customer/addCustomer
+Add Body to our request: 
+
+{
+"name": "Piiret",
+"country": "Latvia",
+"currencies": [
+"USD",
+"EUR"
+]
+}
+
+Response: 
+{
+"id": 11,
+"name": "Piiret",
+"country": "Latvia",
+"currency": [
+"USD",
+"EUR"
+]
+}
+
+Create account for Customer with id=11 using GET request: 
+http://localhost:8080/api/account/addAccount?id=11
+Response: {
+"id": 19,
+"customer_id": 11,
+"listOfBalances": [
+{
+"id": 31,
+"amount": 0,
+"currency": "USD",
+"account_id": 19
+},
+{
+"id": 32,
+"amount": 0,
+"currency": "EUR",
+"account_id": 19
+}
+]
+}
+
+Now we have a new account for Customer with 2 balances for each currency.
+We can get this account by creating request: http://localhost:8080/api/account/getAccount?account_id=19
+
+When account is created successfully it is possible to
+make a transaction.
+
+We use GET request:
+http://localhost:8080/api/transAction/addTrans?account_id=19&amount=13&currencies=USD&direction=IN&description=AddMoney
+
+Response:
+{
+"id": 41,
+"account_id": 19,
+"amount": 13,
+"currency": "USD",
+"description": "AddMoney",
+"balance": {
+"id": 31,
+"amount": 13,
+"currency": "USD",
+"account_id": 19
+},
+"balance_id": 31,
+"direction": "IN"
+}
+
+We can notice that amount of balance increased.
+
+NB ! If some arguments are incorrect (currency is invalid, not enough money on balance and etc.)
+we get an exception with a message.
+
+It is also possible to get all existing transactions:
+http://localhost:8080/api/transAction/getTransactions
+
 
 
 
