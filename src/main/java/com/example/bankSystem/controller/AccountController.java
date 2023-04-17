@@ -16,8 +16,8 @@ public class AccountController {
     private AccountService accountService;
 
     @GetMapping(value = "addAccount")
-    public ResponseEntity<String> addAccount(Integer id) {
-        return ResponseEntity.ok(String.valueOf(accountService.addAccount(id)));
+    public ResponseEntity<Account> addAccount(Integer id) {
+        return ResponseEntity.ok(accountService.addAccount(id));
     }
 
     @GetMapping(value = "getAccount")
