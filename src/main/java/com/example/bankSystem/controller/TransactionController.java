@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/transAction")
@@ -33,5 +34,11 @@ public class TransactionController {
         String message = mapper.writeValueAsString(transaction);
         rabbitTemplate.convertAndSend(RabbitConfig.TOPIC_EXCHANGE_NAME, RabbitConfig.ROUTING_KEY, message);
         return ResponseEntity.ok(transaction);
+    }
+
+    @GetMapping(value = "getTransactions")
+    public ResponseEntity<Object> getTransactions() {
+        List<Transaction> transactionList = transactionService.getAllTransactions();
+        return ResponseEntity.ok(transactionList);
     }
 }

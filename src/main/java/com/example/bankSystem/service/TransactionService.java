@@ -60,4 +60,12 @@ public class TransactionService {
         }
         throw new IllegalAccessException("Invalid currency");
     }
+
+    public List<Transaction> getAllTransactions() {
+        List<Transaction> transactions =  transactionMapper.findAll();
+        for (Transaction transaction : transactions) {
+            transaction.setBalance(balanceMapper.getBalancesById(transaction.getBalance_id())); //set balance for each entity using balance_id
+        }
+        return transactions;
+    }
 }
