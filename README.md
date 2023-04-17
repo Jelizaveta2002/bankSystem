@@ -40,10 +40,8 @@ Username: guest, password: guest. -> Queue -> Get message(s).
 Errors: IllegalArgumentExceptions with informative message
 are thrown if some actions were not successful.
 
-## Additional Information
-For my project I used some materials from one of my university projects: https://github.com/Jelizaveta2002/iti0302-frontend
-I also used some tips from https://stackoverflow.com/ and https://chat.openai.com/chat
-mostly for working with MyBatis and RabbitMQ that I have not used before.
+## Tests
+Tests can be found in package test.
 
 ## How it works
 We can use Postman for example.
@@ -124,6 +122,11 @@ we get an exception with a message.
 
 It is also possible to get all existing transactions:
 http://localhost:8080/api/transAction/getTransactions
+
+## Additional Information
+For my project I used some materials from one of my university projects: https://github.com/Jelizaveta2002/iti0302-frontend
+I also used some tips from https://stackoverflow.com/ and https://chat.openai.com/chat
+mostly for working with MyBatis and RabbitMQ that I have not used before.
 
 
 
