@@ -1,0 +1,23 @@
+<div>
+  <h2>Create Customer</h2>
+  <form (submit)="createCustomer()">
+    <div>
+      <label>Name:</label>
+      <input [(ngModel)]="customerData.name" name="name" type="text" required>
+    </div>
+    <div>
+      <label>Country:</label>
+      <input [(ngModel)]="customerData.country" name="country" type="text" required>
+    </div>
+    <div>
+      <label>Currencies:</label>
+      <div *ngFor="let currency of aavailableCurrencies">
+        <label>
+          <input type="checkbox" [checked]="customerData.currencies.includes(currency)" (change)="toggleCurrency(currency)">
+          {{ currency }}
+        </label>
+      </div>
+    </div>
+    <button type="submit">Create</button>
+  </form>
+</div>
