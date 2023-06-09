@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/customer")
 public class CustomerController {
 
@@ -15,6 +16,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping(value = "addCustomer")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Customer> addCustomer(@RequestBody CustomerDTO customerDTO) {
         return ResponseEntity.ok(customerService.insert(customerDTO));
     }
